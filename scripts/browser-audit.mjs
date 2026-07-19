@@ -131,6 +131,10 @@ try {
             squareProducts: [...document.querySelectorAll('.product-wrapper:not(.d-flex) .product-img > img')].every(img => Math.abs(img.getBoundingClientRect().width - img.getBoundingClientRect().height) < 2),
             loaderHidden: !loader || getComputedStyle(loader).display === 'none',
             popupRemoved: !document.getElementById('autopopup-option'),
+            promoImagesLoaded: [...document.querySelectorAll('.product-discount-area .discount, .product-discount-area .deal-area')].every(el => {
+              const background = getComputedStyle(el).backgroundImage;
+              return background.includes('/assets/img/khmer/promos/') && !background.includes('data:image');
+            }),
             productImageGaps,
             overflow: document.documentElement.scrollWidth - innerWidth,
             offenders: [...document.querySelectorAll('body *')].filter(el => {
@@ -150,7 +154,7 @@ try {
       const state = result.result.value;
       if (!state) throw new Error(result.exceptionDetails?.exception?.description || `Audit evaluation failed for ${page}`);
       if (process.env.AUDIT_TEXT && viewport.name === "desktop" && state.latin.length) latinByPage.push(`${page}: ${state.latin.join(" | ")}`);
-      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || state.foreignTextFonts.length || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || !state.popupRemoved || state.productImageGaps.length || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
+      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || state.foreignTextFonts.length || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || !state.popupRemoved || !state.promoImagesLoaded || state.productImageGaps.length || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
         failures.push(`${viewport.name}/${page}: ${JSON.stringify(state)}`);
       }
       if (errors.length) failures.push(`${viewport.name}/${page}: ${errors.join(" | ")}`);

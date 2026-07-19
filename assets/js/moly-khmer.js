@@ -549,15 +549,19 @@
             if (count) count.textContent = countsByCategory[index % countsByCategory.length] + " មុខ";
         });
 
-        var promoImages = [
-            "assets/img/khmer/promos/women-collection.webp",
-            "assets/img/khmer/promos/men-collection.webp",
-            "assets/img/khmer/promos/season-collection.webp"
-        ];
-        document.querySelectorAll('[style*="product-bg-"]').forEach(function (promo, index) {
-            promo.style.backgroundImage = "linear-gradient(90deg, rgba(22,29,25,.12), rgba(22,29,25,.02)), url('" + promoImages[index % promoImages.length] + "')";
+        document.querySelectorAll(".product-discount-area .discount").forEach(function (promo) {
+            promo.style.backgroundImage = "url('assets/img/khmer/promos/women-collection.webp')";
             promo.style.backgroundSize = "cover";
             promo.style.backgroundPosition = "center";
+        });
+        document.querySelectorAll(".product-discount-area .deal-area").forEach(function (promo) {
+            promo.style.backgroundImage = "url('assets/img/khmer/promos/men-collection.webp')";
+            promo.style.backgroundSize = "cover";
+            promo.style.backgroundPosition = "center";
+        });
+        var collectionImages = ["assets/img/khmer/promos/season-collection.webp", "assets/img/khmer/promos/women-collection.webp"];
+        document.querySelectorAll(".man-collection-area .collection-area").forEach(function (promo, index) {
+            promo.style.backgroundImage = "url('" + collectionImages[index % collectionImages.length] + "')";
         });
         document.querySelectorAll(".man-collection-area .collection-area a").forEach(function (link) {
             link.innerHTML = '<span class="kh-collection-eyebrow">បណ្តុំពិសេស · បញ្ចុះតម្លៃ ៣០%</span><strong>ស្ទីលស្រាល សម្រាប់រាល់ថ្ងៃ</strong>';
