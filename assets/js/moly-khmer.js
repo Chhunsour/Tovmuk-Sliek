@@ -349,6 +349,9 @@
     }
 
     function replaceSharedLayout() {
+        var newsletterPopup = document.getElementById("autopopup-option");
+        if (newsletterPopup) newsletterPopup.remove();
+
         var oldHeader = document.querySelector("header");
         if (oldHeader) {
             var shell = document.createElement("div");
@@ -491,16 +494,26 @@
     }
 
     function populateBlog() {
-        var cards = document.querySelectorAll(".blog-wrapper, .single-blog, .blog-detalis");
+        var cards = document.querySelectorAll(".blog-wrapper, .single-blog");
+        if (!cards.length) cards = document.querySelectorAll(".blog-detalis");
         cards.forEach(function (card, index) {
-            var post = store.blogPosts[index % store.blogPosts.length];
-            var image = card.querySelector("img[src*='/blog/']");
-            var title = card.querySelector("h4 a, h5 a, h6 a, .blog-detalis > a");
+            var slide = card.closest("[data-slick-index]");
+            var slideIndex = slide ? Number(slide.getAttribute("data-slick-index")) : index;
+            var postIndex = ((slideIndex % store.blogPosts.length) + store.blogPosts.length) % store.blogPosts.length;
+            var post = store.blogPosts[postIndex];
+            var details = card.matches(".blog-detalis") ? card : card.querySelector(".blog-detalis") || card;
+            var image = card.querySelector(".blog-img img, img[src*='/blog/']");
+            var title = details.querySelector("h4 a, h5 a, h6 a, .blog-detalis > a, :scope > a");
+            var excerpt = details.querySelector("p");
+            var meta = details.querySelector(":scope > span");
             if (image) { image.src = post.image; image.alt = post.title; image.loading = "lazy"; }
             if (title) { title.textContent = post.title; title.href = "blog-detalis-page.html"; }
-            card.querySelectorAll(".date, time").forEach(function (date) { date.textContent = post.date; });
+            if (excerpt) excerpt.textContent = post.excerpt;
+            if (meta) meta.textContent = "ទស្សនាវដ្តី · " + post.date;
+            details.querySelectorAll(".date, time").forEach(function (date) { date.textContent = post.date; });
         });
         document.querySelectorAll("img[src*='assets/img/blog/']").forEach(function (image, index) {
+            if (image.closest(".blog-wrapper, .single-blog, .blog-detalis")) return;
             var post = store.blogPosts[index % store.blogPosts.length];
             image.src = post.image;
             image.alt = post.title;
@@ -546,17 +559,15 @@
             promo.style.backgroundSize = "cover";
             promo.style.backgroundPosition = "center";
         });
+        document.querySelectorAll(".man-collection-area .collection-area a").forEach(function (link) {
+            link.textContent = "បណ្តុំសម្រាកលម្ហែ បញ្ចុះតម្លៃដល់ ៣០%";
+            link.href = "shop-grid-page.html";
+        });
         document.querySelectorAll('[style*="team-bg"]').forEach(function (promo) {
             promo.style.backgroundImage = "linear-gradient(90deg, rgba(22,29,25,.76), rgba(22,29,25,.34)), url('assets/img/khmer/promos/editorial-full.webp')";
             promo.style.backgroundSize = "cover";
             promo.style.backgroundPosition = "center";
         });
-        document.querySelectorAll(".subscribe-detalis").forEach(function (popup) {
-            popup.style.backgroundImage = "linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.70)), url('assets/img/khmer/promos/newsletter.webp')";
-            popup.style.backgroundSize = "cover";
-            popup.style.backgroundPosition = "center";
-        });
-
         document.querySelectorAll(".product-discount-area .discount").forEach(function (promo) {
             var eyebrow = promo.querySelector(".discount-detalis span");
             var copy = promo.querySelector(".discount-detalis p");
@@ -605,8 +616,13 @@
         document.querySelectorAll(".author-info").forEach(function (author) {
             var name = author.querySelector("h5");
             var role = author.querySelector("span");
-            if (name) name.textContent = "សុភា រ័ត្ន";
+            if (name) name.textContent = "វិសាល មុនី";
             if (role) role.textContent = "អតិថិជន ស្លៀក · ភ្នំពេញ";
+        });
+        document.querySelectorAll(".artical-area .author-img img, .artical-bg .author-img img").forEach(function (image) {
+            image.src = "assets/img/khmer/blog/blog-workwear.webp";
+            image.alt = "វិសាល មុនី អតិថិជន ស្លៀក";
+            image.loading = "lazy";
         });
 
         document.querySelectorAll(".cart-table tbody tr").forEach(function (row, index) {

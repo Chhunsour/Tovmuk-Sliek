@@ -69,12 +69,12 @@
             { id: "SLK-024", name: "វ៉ែនតាពន្លឺថ្ងៃ បូកគោ", category: "គ្រឿងបន្ថែម", price: 25, originalPrice: 31, colors: ["ខ្មៅ"], sizes: ["One size"], stock: 8, image: "assets/img/khmer/products/sliek-24.webp" }
         ],
         blogPosts: [
-            { title: "របៀបជ្រើសក្រណាត់សម្រាប់អាកាសធាតុក្តៅ", date: "១៤ កក្កដា ២០២៦", image: "assets/img/khmer/blog/blog-fabric.webp" },
-            { title: "៥ របៀបផ្គូផ្គងអាវយឺតឱ្យមើលទៅស្អាត", date: "០៦ កក្កដា ២០២៦", image: "assets/img/khmer/blog/blog-tshirt.webp" },
-            { title: "សម្លៀកបំពាក់ការងារដែលស្រួលពាក់ពេញមួយថ្ងៃ", date: "២៨ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-workwear.webp" },
-            { title: "ថែទាំខោជីនឱ្យនៅស្អាត និងប្រើបានយូរ", date: "១៩ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-denim.webp" },
-            { title: "ពណ៌ធម្មជាតិដែលងាយផ្គូផ្គងក្នុងទូខោអាវ", date: "១០ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-colors.webp" },
-            { title: "មគ្គុទ្ទេសក៍ជ្រើសទំហំសម្លៀកបំពាក់តាមអនឡាញ", date: "០១ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-sizing.webp" }
+            { title: "របៀបជ្រើសក្រណាត់សម្រាប់អាកាសធាតុក្តៅ", excerpt: "ស្គាល់ក្រណាត់ដែលមានខ្យល់ចេញចូលល្អ និងផ្តល់អារម្មណ៍ត្រជាក់សម្រាប់ថ្ងៃក្តៅ។", date: "១៤ កក្កដា ២០២៦", image: "assets/img/khmer/blog/blog-fabric.webp" },
+            { title: "៥ របៀបផ្គូផ្គងអាវយឺតឱ្យមើលទៅស្អាត", excerpt: "គន្លឹះងាយៗសម្រាប់ផ្គូផ្គងអាវយឺតជាមួយខោ ស្បែកជើង និងគ្រឿងបន្ថែមប្រចាំថ្ងៃ។", date: "០៦ កក្កដា ២០២៦", image: "assets/img/khmer/blog/blog-tshirt.webp" },
+            { title: "សម្លៀកបំពាក់ការងារដែលស្រួលពាក់ពេញមួយថ្ងៃ", excerpt: "ជ្រើសរើសឈុតការងារដែលមានទម្រង់ស្អាត ប៉ុន្តែស្រាល និងងាយធ្វើចលនា។", date: "២៨ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-workwear.webp" },
+            { title: "ថែទាំខោជីនឱ្យនៅស្អាត និងប្រើបានយូរ", excerpt: "វិធីបោក សម្ងួត និងរក្សាទុកខោជីន ដើម្បីថែពណ៌ និងទម្រង់ឱ្យនៅស្អាតបានយូរ។", date: "១៩ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-denim.webp" },
+            { title: "ពណ៌ធម្មជាតិដែលងាយផ្គូផ្គងក្នុងទូខោអាវ", excerpt: "រៀបចំទូខោអាវដោយពណ៌ស្ងប់ស្ងាត់ ដែលអាចផ្គូផ្គងគ្នាបានច្រើនឈុត។", date: "១០ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-colors.webp" },
+            { title: "មគ្គុទ្ទេសក៍ជ្រើសទំហំសម្លៀកបំពាក់តាមអនឡាញ", excerpt: "វាស់ខ្លួន និងប្រៀបធៀបតារាងទំហំឱ្យបានត្រឹមត្រូវ មុនពេលបញ្ជាទិញតាមអនឡាញ។", date: "០១ មិថុនា ២០២៦", image: "assets/img/khmer/blog/blog-sizing.webp" }
         ]
     };
 }());

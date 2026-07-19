@@ -614,20 +614,6 @@
         ]
     });
 
-    // autopopup
-    $(document).ready(function(){
-        if (localStorage.getItem('sliek-newsletter-dismissed') !== '1') {
-            setTimeout(function(){
-                $('#autopopup-option').css('display','block');
-            },5000);
-        }
-        $('#close-button').click(function(){
-            $('#autopopup-option').css('display','none');
-            if ($('#checkbox').is(':checked')) localStorage.setItem('sliek-newsletter-dismissed', '1');
-        })
-
-    });
-
     $('.mfp-iframe').magnificPopup({
         type: 'iframe'
     });

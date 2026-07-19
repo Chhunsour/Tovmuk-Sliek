@@ -8,7 +8,11 @@ const chromePath = process.env.CHROME_PATH || "/Applications/Google Chrome.app/C
 const profile = `/tmp/sliek-browser-audit-${process.pid}`;
 const port = 9333;
 const pages = readdirSync(root).filter((file) => file.endsWith(".html") && (!process.env.AUDIT_PAGE || file === process.env.AUDIT_PAGE)).sort();
-const viewports = [{ name: "desktop", width: 1440, height: 900 }, { name: "mobile", width: 390, height: 844 }];
+const viewports = [
+  { name: "desktop", width: 1440, height: 900 },
+  { name: "tablet", width: 768, height: 1024 },
+  { name: "mobile", width: 390, height: 844 }
+];
 const auditDir = resolve(root, "audit-screenshots");
 mkdirSync(auditDir, { recursive: true });
 
@@ -101,6 +105,17 @@ try {
           const search = document.querySelector('[data-toggle-search]');
           if (${viewport.name === "mobile"} && menu) menu.click();
           if (search) search.click();
+          const productImageGaps = [...document.querySelectorAll('.product-wrapper:not(.product-wrapper-2)')].flatMap(wrapper => {
+            const image = wrapper.querySelector('.product-img > img, .product-img a > img');
+            const details = wrapper.querySelector('.product-detalis');
+            const wrapperRect = wrapper.getBoundingClientRect();
+            const detailsRect = details?.getBoundingClientRect();
+            const imageRect = image?.getBoundingClientRect();
+            const cardIsLaidOut = wrapperRect.width > 20 && wrapperRect.height > 20 && detailsRect?.width > 20 && detailsRect?.height > 20;
+            return cardIsLaidOut && (!image || imageRect.width < 20 || imageRect.height < 20)
+              ? [{ card: wrapper.className, src: image?.getAttribute('src') || null, imageWidth: Math.round(imageRect?.width || 0), imageHeight: Math.round(imageRect?.height || 0) }]
+              : [];
+          }).slice(0, 8);
           const state = {
             lang: document.documentElement.lang,
             title: document.title,
@@ -111,6 +126,8 @@ try {
             stickyHeader: getComputedStyle(document.querySelector('.kh-site-header')).position === 'sticky',
             squareProducts: [...document.querySelectorAll('.product-wrapper:not(.d-flex) .product-img > img')].every(img => Math.abs(img.getBoundingClientRect().width - img.getBoundingClientRect().height) < 2),
             loaderHidden: !loader || getComputedStyle(loader).display === 'none',
+            popupRemoved: !document.getElementById('autopopup-option'),
+            productImageGaps,
             overflow: document.documentElement.scrollWidth - innerWidth,
             offenders: [...document.querySelectorAll('body *')].filter(el => {
               const rect = el.getBoundingClientRect();
@@ -129,14 +146,16 @@ try {
       const state = result.result.value;
       if (!state) throw new Error(result.exceptionDetails?.exception?.description || `Audit evaluation failed for ${page}`);
       if (process.env.AUDIT_TEXT && viewport.name === "desktop" && state.latin.length) latinByPage.push(`${page}: ${state.latin.join(" | ")}`);
-      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
+      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || !state.popupRemoved || state.productImageGaps.length || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
         failures.push(`${viewport.name}/${page}: ${JSON.stringify(state)}`);
       }
       if (errors.length) failures.push(`${viewport.name}/${page}: ${errors.join(" | ")}`);
       if (representative.has(page)) {
         if (process.env.AUDIT_SELECTOR) {
           await client.send("Runtime.evaluate", { expression: `document.querySelector(${JSON.stringify(process.env.AUDIT_SELECTOR)})?.scrollIntoView({block:'start'})` });
-          await delay(400);
+          await delay(500);
+          await client.send("Runtime.evaluate", { expression: `document.querySelector(${JSON.stringify(process.env.AUDIT_SELECTOR)})?.scrollIntoView({block:'start'})` });
+          await delay(300);
         }
         const shot = await client.send("Page.captureScreenshot", { format: "jpeg", quality: 72, fromSurface: true });
         const suffix = process.env.AUDIT_SHOT_NAME ? `-${process.env.AUDIT_SHOT_NAME}` : "";
@@ -158,4 +177,4 @@ if (failures.length) {
 }
 
 if (latinByPage.length) console.log(`Visible Latin-script text:\n${latinByPage.map((item) => `- ${item}`).join("\n")}`);
-console.log(`Browser audit passed: ${pages.length} pages at desktop and mobile widths. Representative screenshots: ${auditDir}`);
+console.log(`Browser audit passed: ${pages.length} pages at desktop, tablet, and mobile widths. Representative screenshots: ${auditDir}`);
