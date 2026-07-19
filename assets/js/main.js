@@ -716,6 +716,12 @@
 
 // Central Khmer store content and shared layout.
 (function () {
+    var theme = document.createElement('link');
+    theme.id = 'khmer-store-theme';
+    theme.rel = 'stylesheet';
+    theme.href = 'assets/css/khmer-store.css';
+    document.head.appendChild(theme);
+
     var config = document.createElement('script');
     config.src = 'assets/js/store-config.js';
     config.onload = function () {

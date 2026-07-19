@@ -5,7 +5,7 @@
   "description": "Khmer fashion storefront adapted from the Moly HTML template",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vite build && cp -R assets/js dist/assets/js && mkdir -p dist/assets/img && cp -R assets/img/khmer dist/assets/img/khmer",
+    "build": "vite build && cp -R assets/js dist/assets/js && mkdir -p dist/assets/img dist/assets/css && cp -R assets/img/khmer dist/assets/img/khmer && cp assets/css/khmer-store.css dist/assets/css/khmer-store.css",
     "preview": "vite preview --host 127.0.0.1",
     "check": "node scripts/check-site.mjs",
     "audit": "node scripts/browser-audit.mjs"

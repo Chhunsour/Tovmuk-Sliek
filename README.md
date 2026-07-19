@@ -27,7 +27,7 @@ npm run preview
 
 ## Customize
 
-Edit `assets/js/store-config.js` for store content, contact links, theme colors, catalog data, and image paths. Replace optimized images within `assets/img/khmer/` while keeping the current aspect ratios and filenames. Shared navigation/footer edits belong in `assets/js/moly-khmer.js` so every page stays consistent.
+Edit `assets/js/store-config.js` for store content, contact links, theme colors, catalog data, and image paths. Replace optimized product images within `assets/img/khmer/products/` at 1080×1080 while keeping the current filenames. Shared navigation/footer edits belong in `assets/js/moly-khmer.js` so every page stays consistent.
 
 ## Pages
 

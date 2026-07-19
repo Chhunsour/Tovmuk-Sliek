@@ -107,6 +107,9 @@ try {
             header: !!document.querySelector('.kh-site-header'),
             footer: !!document.querySelector('.kh-site-footer'),
             config: !!window.MOLY_STORE,
+            font: getComputedStyle(document.body).fontFamily,
+            stickyHeader: getComputedStyle(document.querySelector('.kh-site-header')).position === 'sticky',
+            squareProducts: [...document.querySelectorAll('.product-wrapper:not(.d-flex) .product-img > img')].every(img => Math.abs(img.getBoundingClientRect().width - img.getBoundingClientRect().height) < 2),
             loaderHidden: !loader || getComputedStyle(loader).display === 'none',
             overflow: document.documentElement.scrollWidth - innerWidth,
             offenders: [...document.querySelectorAll('body *')].filter(el => {
@@ -126,13 +129,18 @@ try {
       const state = result.result.value;
       if (!state) throw new Error(result.exceptionDetails?.exception?.description || `Audit evaluation failed for ${page}`);
       if (process.env.AUDIT_TEXT && viewport.name === "desktop" && state.latin.length) latinByPage.push(`${page}: ${state.latin.join(" | ")}`);
-      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.loaderHidden || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
+      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
         failures.push(`${viewport.name}/${page}: ${JSON.stringify(state)}`);
       }
       if (errors.length) failures.push(`${viewport.name}/${page}: ${errors.join(" | ")}`);
       if (representative.has(page)) {
+        if (process.env.AUDIT_SELECTOR) {
+          await client.send("Runtime.evaluate", { expression: `document.querySelector(${JSON.stringify(process.env.AUDIT_SELECTOR)})?.scrollIntoView({block:'start'})` });
+          await delay(400);
+        }
         const shot = await client.send("Page.captureScreenshot", { format: "jpeg", quality: 72, fromSurface: true });
-        writeFileSync(resolve(auditDir, `${viewport.name}-${page.replace(".html", "")}.jpg`), Buffer.from(shot.data, "base64"));
+        const suffix = process.env.AUDIT_SHOT_NAME ? `-${process.env.AUDIT_SHOT_NAME}` : "";
+        writeFileSync(resolve(auditDir, `${viewport.name}-${page.replace(".html", "")}${suffix}.jpg`), Buffer.from(shot.data, "base64"));
       }
       client.close();
       await fetch(`http://127.0.0.1:${port}/json/close/${target.id}`);

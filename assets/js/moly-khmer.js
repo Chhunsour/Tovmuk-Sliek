@@ -311,21 +311,21 @@
             '<header class="kh-site-header">' +
                 '<div class="kh-topbar"><div class="container">' +
                     '<p class="kh-topbar-offer">ដឹកជញ្ជូនឥតគិតថ្លៃក្នុងភ្នំពេញ សម្រាប់ការទិញចាប់ពី $50</p>' +
-                    '<div class="kh-topbar-links"><a href="tel:+85512678495"><i class="fas fa-phone-alt" aria-hidden="true"></i> ' + store.brand.phone + '</a><a href="' + store.brand.telegram + '" target="_blank" rel="noopener">Telegram</a><span>USD $</span></div>' +
+                    '<div class="kh-topbar-links"><a href="tel:+85512678495"><i class="fas fa-phone-alt" aria-hidden="true"></i> ' + store.brand.phone + '</a><a href="' + store.brand.telegram + '" target="_blank" rel="noopener">Telegram</a></div>' +
                 '</div></div>' +
                 '<div class="container kh-navbar">' +
                     '<a class="kh-logo" href="index.html" aria-label="' + store.brand.name + ' ទំព័រដើម">' + store.brand.name + '<small>' + store.brand.latinName + '</small></a>' +
                     '<nav class="kh-main-nav" id="kh-main-nav" aria-label="ម៉ឺនុយមេ"><ul>' +
                         '<li><a data-group="home" href="index.html">ទំព័រដើម</a></li>' +
+                        '<li><a data-group="shop" href="shop-grid-page.html">ហាង</a></li>' +
                         '<li><a data-group="shop" href="shop-grid-page-2.html">នារី</a></li>' +
                         '<li><a data-group="shop" href="shop-grid-page-3.html">បុរស</a></li>' +
-                        '<li><a data-group="shop" href="shop-grid-page.html">ហាង <i class="fas fa-angle-down" aria-hidden="true"></i></a>' + shopDropdown() + '</li>' +
-                        '<li><a data-group="blog" href="blog-page.html">អត្ថបទ <i class="fas fa-angle-down" aria-hidden="true"></i></a>' + blogDropdown() + '</li>' +
-                        '<li><a data-group="pages" href="about-page.html">ព័ត៌មាន <i class="fas fa-angle-down" aria-hidden="true"></i></a>' + pageDropdown() + '</li>' +
+                        '<li><a data-group="blog" href="blog-page.html">អត្ថបទ</a></li>' +
+                        '<li><a data-group="pages" href="contact-page.html">ទំនាក់ទំនង</a></li>' +
                     '</ul></nav>' +
                     '<div class="kh-actions">' +
                         '<button class="kh-icon-button" type="button" data-toggle-search aria-label="ស្វែងរក" aria-expanded="false"><i class="fas fa-search" aria-hidden="true"></i></button>' +
-                        '<a class="kh-icon-button" href="cart-page.html#wishlist" aria-label="បញ្ជីចង់បាន"><i class="far fa-heart" aria-hidden="true"></i><span class="kh-count" data-wishlist-count>0</span></a>' +
+                        '<a class="kh-icon-button" href="login-page.html" aria-label="គណនីរបស់ខ្ញុំ"><i class="far fa-user" aria-hidden="true"></i></a>' +
                         '<a class="kh-icon-button" href="cart-page.html" aria-label="កន្ត្រកទំនិញ"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="kh-count" data-cart-count>0</span></a>' +
                         '<button class="kh-menu-toggle" type="button" aria-controls="kh-main-nav" aria-expanded="false" aria-label="បើកម៉ឺនុយ"><i class="fas fa-bars" aria-hidden="true"></i></button>' +
                     '</div>' +
@@ -334,52 +334,15 @@
             '</header>';
     }
 
-    function shopDropdown() {
-        return '<ul class="kh-dropdown">' +
-            '<li><a href="shop-grid-page.html">ទំនិញទាំងអស់</a></li>' +
-            '<li><a href="shop-grid-page-2.html">ក្រឡាទំនិញ ទំព័រ ២</a></li>' +
-            '<li><a href="shop-grid-page-3.html">ក្រឡាទំនិញ ទំព័រ ៣</a></li>' +
-            '<li><a href="shop-grid-left-sidebar-page.html">ក្រឡា — តម្រងខាងឆ្វេង</a></li>' +
-            '<li><a href="shop-grid-right-sidebar-page.html">ក្រឡា — តម្រងខាងស្តាំ</a></li>' +
-            '<li><a href="shop-list-page.html">បញ្ជីទំនិញ</a></li>' +
-            '<li><a href="shop-list-left-sidebar-page.html">បញ្ជី — តម្រងខាងឆ្វេង</a></li>' +
-            '<li><a href="shop-list-right-sidebar-page.html">បញ្ជី — តម្រងខាងស្តាំ</a></li>' +
-            '<li><a href="shop-detalis-page.html">ព័ត៌មានទំនិញ</a></li>' +
-            '<li><a href="shop-detalis-left-sidebar-page.html">ព័ត៌មាន — របារខាងឆ្វេង</a></li>' +
-            '<li><a href="shop-detalis-right-sidebar-page.html">ព័ត៌មាន — របារខាងស្តាំ</a></li>' +
-        '</ul>';
-    }
-
-    function blogDropdown() {
-        return '<ul class="kh-dropdown">' +
-            '<li><a href="blog-page.html">ទស្សនាវដ្តីម៉ូដ</a></li>' +
-            '<li><a href="blog-page-2.html">អត្ថបទថ្មីៗ</a></li>' +
-            '<li><a href="blog-left-sidebar-page.html">អត្ថបទ — របារខាងឆ្វេង</a></li>' +
-            '<li><a href="blog-right-sidebar-page.html">អត្ថបទ — របារខាងស្តាំ</a></li>' +
-            '<li><a href="blog-detalis-page.html">អានអត្ថបទ</a></li>' +
-        '</ul>';
-    }
-
-    function pageDropdown() {
-        return '<ul class="kh-dropdown">' +
-            '<li><a href="about-page.html">អំពីយើង</a></li>' +
-            '<li><a href="contact-page.html">ទំនាក់ទំនង</a></li>' +
-            '<li><a href="login-page.html">ចូលគណនី</a></li>' +
-            '<li><a href="register-page.html">បង្កើតគណនី</a></li>' +
-            '<li><a href="cart-page.html">កន្ត្រកទំនិញ</a></li>' +
-            '<li><a href="checkout-page.html">បញ្ជាក់ការបញ្ជាទិញ</a></li>' +
-            '<li><a href="404.html">ទំព័ររកមិនឃើញ</a></li>' +
-        '</ul>';
-    }
-
     function footerMarkup() {
         var homeVariants = ["index.html", "index-2.html", "index-3.html", "index-4.html", "index-5.html", "index-6.html", "index-7.html", "index-8.html"];
+        var archivePages = ["shop-grid-left-sidebar-page.html", "shop-grid-right-sidebar-page.html", "shop-list-page.html", "shop-list-left-sidebar-page.html", "shop-list-right-sidebar-page.html", "shop-detalis-page.html", "shop-detalis-left-sidebar-page.html", "shop-detalis-right-sidebar-page.html", "blog-page-2.html", "blog-left-sidebar-page.html", "blog-right-sidebar-page.html", "blog-detalis-page.html", "register-page.html", "404.html"];
         return '<footer class="kh-site-footer"><div class="container">' +
             '<div class="row">' +
                 '<div class="col-lg-4 col-md-6"><h2>' + store.brand.name + '</h2><p>' + store.brand.tagline + '</p><address class="kh-footer-contact"><p>' + store.brand.address + '</p><p><a href="tel:+85512678495">' + store.brand.phone + '</a><br><a href="mailto:' + store.brand.email + '">' + store.brand.email + '</a></p></address></div>' +
                 '<div class="col-lg-2 col-sm-6"><h3>ហាង</h3><ul class="kh-footer-links"><li><a href="shop-grid-page-2.html">សម្លៀកបំពាក់នារី</a></li><li><a href="shop-grid-page-3.html">សម្លៀកបំពាក់បុរស</a></li><li><a href="shop-grid-page.html">ទំនិញថ្មី</a></li><li><a href="cart-page.html">កន្ត្រកទំនិញ</a></li></ul></div>' +
                 '<div class="col-lg-3 col-sm-6"><h3>ជំនួយអតិថិជន</h3><ul class="kh-footer-links"><li><a href="about-page.html">អំពីយើង</a></li><li><a href="contact-page.html">ទំនាក់ទំនង</a></li><li><a href="login-page.html">គណនីរបស់ខ្ញុំ</a></li><li><a href="checkout-page.html">ការដឹកជញ្ជូន និងការទូទាត់</a></li></ul></div>' +
-                '<div class="col-lg-3 col-sm-6"><h3>តាមដានយើង</h3><ul class="kh-footer-links"><li><a href="' + store.brand.telegram + '" target="_blank" rel="noopener">Telegram</a></li><li><a href="' + store.brand.facebook + '" target="_blank" rel="noopener">Facebook</a></li><li><a href="blog-page.html">ទស្សនាវដ្តីម៉ូដ</a></li></ul><details><summary>ប្លង់ទំព័រដើមទាំង ៨</summary><p>' + homeVariants.map(function (href, index) { return '<a href="' + href + '">' + (index + 1) + '</a>'; }).join(' · ') + '</p></details></div>' +
+                '<div class="col-lg-3 col-sm-6"><h3>តាមដានយើង</h3><ul class="kh-footer-links"><li><a href="' + store.brand.telegram + '" target="_blank" rel="noopener">Telegram</a></li><li><a href="' + store.brand.facebook + '" target="_blank" rel="noopener">Facebook</a></li><li><a href="blog-page.html">ទស្សនាវដ្តីម៉ូដ</a></li></ul><details><summary>ប្លង់ទំព័រដើមទាំង ៨</summary><p>' + homeVariants.map(function (href, index) { return '<a href="' + href + '">' + (index + 1) + '</a>'; }).join(' · ') + '</p></details><details class="kh-footer-archive"><summary>ទំព័របន្ថែម</summary><p>' + archivePages.map(function (href, index) { return '<a href="' + href + '">' + (index + 1) + '</a>'; }).join(' · ') + '</p></details></div>' +
             '</div>' +
             '<div class="kh-footer-bottom"><div class="row"><div class="col-md-7">© ២០២៦ ' + store.brand.name + '។ រក្សាសិទ្ធិគ្រប់យ៉ាង។</div><div class="col-md-5 kh-footer-legal"><a href="about-page.html#privacy">គោលការណ៍ឯកជនភាព</a><a href="about-page.html#terms">លក្ខខណ្ឌប្រើប្រាស់</a></div></div></div>' +
         '</div></footer>';
@@ -472,8 +435,8 @@
             image.src = product.image;
             image.alt = product.name + " — " + product.id;
             image.loading = "lazy";
-            image.width = 800;
-            image.height = 800;
+            image.width = 1080;
+            image.height = 1080;
         }
     }
 
@@ -593,9 +556,38 @@
             popup.style.backgroundSize = "cover";
             popup.style.backgroundPosition = "center";
         });
+
+        document.querySelectorAll(".product-discount-area .discount").forEach(function (promo) {
+            var eyebrow = promo.querySelector(".discount-detalis span");
+            var copy = promo.querySelector(".discount-detalis p");
+            if (eyebrow) eyebrow.textContent = "បណ្តុំនារី · បញ្ចុះតម្លៃរហូតដល់ ៣០%";
+            if (copy) copy.textContent = "រ៉ូប និងឈុតស្រាល ដែលងាយផ្គូផ្គងសម្រាប់ថ្ងៃធ្វើការ និងថ្ងៃសម្រាក។";
+        });
+        document.querySelectorAll(".product-discount-area .deal-area").forEach(function (promo) {
+            var eyebrow = promo.querySelector(".time-area > p");
+            var title = promo.querySelector(".section-title h3");
+            var link = promo.querySelector(".dbtn");
+            if (eyebrow) eyebrow.textContent = "ការផ្តល់ជូនមានកំណត់";
+            if (title) title.textContent = "បណ្តុំបុរសប្រចាំសប្តាហ៍";
+            if (link) { link.textContent = "ទិញឥឡូវនេះ"; link.href = "shop-grid-page-3.html"; }
+        });
     }
 
     function localizePageContent() {
+        document.querySelectorAll(".product-menu").forEach(function (menu) {
+            var buttons = Array.prototype.slice.call(menu.querySelectorAll("button"));
+            buttons.forEach(function (button, index) {
+                if (index !== 0 && index !== 1 && index !== buttons.length - 1) {
+                    if (button.nextElementSibling && button.nextElementSibling.tagName === "HR") button.nextElementSibling.remove();
+                    button.remove();
+                }
+            });
+            var remaining = menu.querySelectorAll("button");
+            if (remaining[0]) remaining[0].textContent = "ទាំងអស់";
+            if (remaining[1]) remaining[1].textContent = "ទំនិញថ្មី";
+            if (remaining[2]) remaining[2].textContent = "លក់ដាច់";
+        });
+
         document.querySelectorAll("p").forEach(function (paragraph) {
             var text = paragraph.textContent.replace(/\s+/g, " ").trim();
             if (/[A-Za-z]{3}/.test(text) && text.length > 22 && !/@|USD|SLIEK|Telegram|Facebook/.test(text)) {

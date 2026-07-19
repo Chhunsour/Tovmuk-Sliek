@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@100;200;300;400;500;600;700&display=swap");
 
 :root {
     --store-primary: #b5442f;
@@ -11,21 +11,22 @@
     --store-shadow: 0 18px 50px rgba(48, 37, 25, .10);
 }
 
-html { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+html { max-width: 100%; overflow-x: clip; scroll-behavior: smooth; }
 
 body,
 button,
 input,
 select,
 textarea {
-    font-family: "Noto Sans Khmer", sans-serif !important;
+    font-family: "Kantumruy Pro", sans-serif !important;
 }
 
 body {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--store-ink);
     background: #fff;
+    font-weight: 400;
     line-height: 1.75;
 }
 
@@ -60,11 +61,14 @@ textarea:focus-visible {
 .kh-skip-link:focus { transform: translateY(0); color: #fff; }
 
 .kh-site-header {
-    position: relative;
-    z-index: 100;
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
     color: var(--store-ink);
-    background: rgba(255, 255, 255, .97);
+    background: rgba(255, 255, 255, .96);
     border-bottom: 1px solid var(--store-line);
+    box-shadow: 0 8px 28px rgba(31, 41, 36, .07);
+    backdrop-filter: blur(14px);
 }
 
 .kh-topbar {
@@ -98,7 +102,7 @@ textarea:focus-visible {
     display: inline-flex;
     align-items: baseline;
     color: var(--store-ink);
-    font-family: "Noto Sans Khmer", sans-serif;
+    font-family: "Kantumruy Pro", sans-serif;
     font-size: 29px;
     font-weight: 700;
     line-height: 1;
@@ -106,36 +110,15 @@ textarea:focus-visible {
 }
 
 .kh-logo:hover { color: var(--store-primary); }
-.kh-logo small { margin-left: 8px; color: var(--store-primary); font-family: "Outfit", sans-serif; font-size: 11px; letter-spacing: .16em; }
+.kh-logo small { margin-left: 8px; color: var(--store-primary); font-family: "Kantumruy Pro", sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .16em; }
 
 .kh-main-nav { flex: 1 1 auto; }
-.kh-main-nav > ul { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 0; padding: 0; list-style: none; }
+.kh-main-nav > ul { display: flex; align-items: center; justify-content: center; gap: 34px; margin: 0; padding: 0; list-style: none; }
 .kh-main-nav li { position: relative; }
-.kh-main-nav a { color: var(--store-ink); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.kh-main-nav a { color: var(--store-ink); font-size: 14px; font-weight: 500; white-space: nowrap; }
 .kh-main-nav > ul > li > a { display: block; padding: 28px 0; }
 .kh-main-nav a:hover,
 .kh-main-nav a.is-active { color: var(--store-primary); }
-
-.kh-dropdown {
-    position: absolute;
-    top: calc(100% - 8px);
-    left: -22px;
-    min-width: 235px;
-    margin: 0;
-    padding: 12px;
-    list-style: none;
-    background: #fff;
-    border: 1px solid var(--store-line);
-    box-shadow: var(--store-shadow);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px);
-}
-
-.kh-dropdown a { display: block; padding: 8px 10px; border-radius: 3px; }
-.kh-dropdown a:hover { background: var(--store-paper); }
-.kh-main-nav li:hover > .kh-dropdown,
-.kh-main-nav li:focus-within > .kh-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
 
 .kh-actions { display: flex; align-items: center; gap: 8px; }
 .kh-icon-button,
@@ -168,7 +151,7 @@ textarea:focus-visible {
     color: #fff;
     background: var(--store-primary);
     border-radius: 9px;
-    font: 600 10px/1 "Outfit", sans-serif;
+    font: 600 10px/1 "Kantumruy Pro", sans-serif;
 }
 
 .kh-menu-toggle { display: none; font-size: 20px; }
@@ -203,6 +186,9 @@ textarea:focus-visible {
 .kh-site-footer a:hover { color: #fff; }
 .kh-footer-links { margin: 0; padding: 0; list-style: none; }
 .kh-footer-links li { margin-bottom: 9px; }
+.kh-site-footer details { margin-top: 12px; }
+.kh-site-footer summary { color: #fff; font-weight: 500; cursor: pointer; }
+.kh-site-footer details p { margin: 6px 0 0; word-spacing: 4px; }
 .kh-footer-contact { font-style: normal; }
 .kh-footer-bottom { margin-top: 42px; padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, .12); font-size: 12px; }
 .kh-footer-bottom .row { align-items: center; }
@@ -224,7 +210,7 @@ textarea:focus-visible {
 .slider-content p { max-width: 610px; line-height: 1.8 !important; }
 .slider-area .hero-text > span {
     max-width: 610px;
-    font-family: "Noto Sans Khmer", sans-serif !important;
+    font-family: "Kantumruy Pro", sans-serif !important;
     letter-spacing: 0 !important;
     line-height: 1.8 !important;
     text-transform: none !important;
@@ -251,6 +237,94 @@ textarea:focus-visible {
 .deal-area,
 .artical-area,
 .artical-bg { background-size: cover !important; background-position: center !important; }
+
+.product-discount-area .discount,
+.product-discount-area .deal-area {
+    position: relative;
+    isolation: isolate;
+    min-height: 360px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+    background-position: center !important;
+}
+
+.product-discount-area .discount::before,
+.product-discount-area .deal-area::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgba(22, 29, 25, .92) 0%, rgba(22, 29, 25, .80) 42%, rgba(22, 29, 25, .14) 76%, transparent 100%);
+}
+
+.product-discount-area .discount-detalis,
+.product-discount-area .time-area {
+    position: relative;
+    z-index: 1;
+    width: min(62%, 470px);
+    padding: 44px !important;
+    text-align: left !important;
+}
+
+.product-discount-area .discount-detalis span,
+.product-discount-area .time-area > p {
+    display: block;
+    margin-bottom: 10px !important;
+    color: #f0c9b8 !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: .02em !important;
+    line-height: 1.7 !important;
+    text-transform: none !important;
+}
+
+.product-discount-area .discount-detalis p,
+.product-discount-area .section-title h3 {
+    margin: 0;
+    padding: 0 0 18px !important;
+    color: #fff !important;
+    font-size: clamp(25px, 2.1vw, 34px) !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    text-wrap: balance;
+}
+
+.product-discount-area div#countdown { display: flex; gap: 7px; margin-bottom: 18px; }
+.product-discount-area div#countdown .cd-box {
+    min-width: 58px;
+    margin: 0 !important;
+    padding: 7px 5px;
+    background: rgba(255, 255, 255, .94) !important;
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 2px;
+    text-align: center;
+}
+.product-discount-area div#countdown span { display: block; color: var(--store-primary) !important; line-height: 1.35 !important; }
+.product-discount-area .dbtn {
+    width: auto !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    padding: 11px 20px;
+    color: #fff !important;
+    background: var(--store-primary) !important;
+    line-height: 1.5 !important;
+}
+
+.product-wrapper:not(.d-flex) .product-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--store-paper);
+}
+.product-wrapper:not(.d-flex) .product-img > img,
+.product-wrapper:not(.d-flex) .product-img a > img {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+}
 .owl-video-play-icon { background: var(--store-primary) !important; border-radius: 50%; }
 .owl-video-play-icon::after { content: "▶"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 26px; }
 .slider-content a,
@@ -278,6 +352,9 @@ button[type="submit"] { border-radius: 2px !important; }
 .product-wrapper .product-detalis { min-height: 145px; }
 .product-wrapper .product-detalis h6 { min-height: 48px; margin: 4px 0 8px; }
 .product-wrapper .product-detalis > span { color: var(--store-muted); }
+.product-wrapper .product-detalis > span,
+.blog-detalis > span,
+.kh-site-footer p { font-weight: 300; }
 .product-wrapper .price span { color: var(--store-primary); font-variant-numeric: tabular-nums; }
 .product-wrapper .price del { color: #9a9b98; font-variant-numeric: tabular-nums; }
 .product-wrapper:hover { box-shadow: var(--store-shadow); transform: translateY(-3px); }
@@ -327,7 +404,7 @@ textarea:focus { border-color: var(--store-primary) !important; box-shadow: 0 0 
 .error-area,
 .error-page-area { min-height: 62vh; display: grid; place-items: center; text-align: center; }
 .kh-not-found { max-width: 720px; margin: 0 auto; padding: 90px 20px; text-align: center; }
-.kh-error-code { margin: 0; color: var(--store-primary); font: 700 clamp(72px, 14vw, 150px)/1 "Outfit", sans-serif; }
+.kh-error-code { margin: 0; color: var(--store-primary); font: 700 clamp(72px, 14vw, 150px)/1 "Kantumruy Pro", sans-serif; }
 .kh-not-found h1 { margin: 12px 0 18px; font-size: clamp(28px, 4vw, 46px); }
 .kh-not-found > p:not(.kh-error-code) { max-width: 600px; margin: 0 auto 30px; color: var(--store-muted); }
 .kh-not-found .b-btn { display: inline-block; margin: 5px; padding: 14px 24px; color: #fff; background: var(--store-primary); }
@@ -361,8 +438,6 @@ textarea:focus { border-color: var(--store-primary) !important; box-shadow: 0 0 
     .kh-main-nav.is-open { display: block; }
     .kh-main-nav > ul { display: block; }
     .kh-main-nav > ul > li > a { padding: 10px 0; }
-    .kh-dropdown { position: static; display: block; min-width: 0; padding: 0 0 4px 16px; border: 0; box-shadow: none; opacity: 1; visibility: visible; transform: none; }
-    .kh-dropdown a { padding: 6px 0; color: var(--store-muted); }
     .kh-actions { margin-left: auto; }
     .product-sidebar .product-wrapper { align-items: flex-start; }
 }
@@ -389,6 +464,13 @@ textarea:focus { border-color: var(--store-primary) !important; box-shadow: 0 0 
     .slider-area .slider-content { height: 670px !important; padding-top: 350px !important; }
     .slider-area .hero-text { padding-top: 0 !important; text-align: left !important; }
     .page-title-area { background-image: var(--kh-banner-mobile) !important; }
+    .product-discount-area .discount,
+    .product-discount-area .deal-area { min-height: 420px; }
+    .product-discount-area .discount::before,
+    .product-discount-area .deal-area::before { background: linear-gradient(90deg, rgba(22, 29, 25, .94), rgba(22, 29, 25, .68)); }
+    .product-discount-area .discount-detalis,
+    .product-discount-area .time-area { width: 100%; padding: 30px !important; }
+    .product-discount-area div#countdown { flex-wrap: wrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {
