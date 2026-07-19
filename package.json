@@ -1,0 +1,16 @@
+{
+  "name": "sliek-khmer-fashion-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Khmer fashion storefront adapted from the Moly HTML template",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && cp -R assets/js dist/assets/js && mkdir -p dist/assets/img && cp -R assets/img/khmer dist/assets/img/khmer",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "node scripts/check-site.mjs",
+    "audit": "node scripts/browser-audit.mjs"
+  },
+  "devDependencies": {
+    "vite": "^7.0.0"
+  }
+}

@@ -111,7 +111,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [{
@@ -149,7 +149,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 6,
         slidesToScroll: 1,
         responsive: [{
@@ -216,7 +216,7 @@
         asNavFor: '.product-list-slider',
         dots: false,
         prevArrow: '<button class="product-slick-prev"><i class="fa fa-angle-left"></i></button>',
-        nextArrow: '<button class="product-slick-next"><i class="fa fa-angle-right"></i"</button>',
+        nextArrow: '<button class="product-slick-next"><i class="fa fa-angle-right"></i></button>',
         //	centerMode: true,
         focusOnSelect: true,
         responsive: [{
@@ -242,7 +242,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 4,
         slidesToScroll: 2,
         responsive: [{
@@ -386,7 +386,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 2,
         slidesToScroll: 2,
         responsive: [{
@@ -434,7 +434,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 1,
         slidesToScroll: 1,
         responsive: [{
@@ -473,7 +473,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 2,
         slidesToScroll: 2,
         responsive: [{
@@ -503,7 +503,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 1,
         slidesToScroll: 1,
         responsive: [{
@@ -542,7 +542,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [{
@@ -581,7 +581,7 @@
         infinite: true,
         speed: 300,
         prevArrow: '<a class="product-slick-prev"><i class="fa fa-angle-left"></i></a>',
-        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i"</a>',
+        nextArrow: '<a class="product-slick-next"><i class="fa fa-angle-right"></i></a>',
         slidesToShow: 3,
         slidesToScroll: 1,
         responsive: [{
@@ -616,20 +616,20 @@
 
     // autopopup
     $(document).ready(function(){
-        setTimeout(function(){
-            $('#autopopup-option').css('display','block');
-        },5000);
+        if (localStorage.getItem('sliek-newsletter-dismissed') !== '1') {
+            setTimeout(function(){
+                $('#autopopup-option').css('display','block');
+            },5000);
+        }
         $('#close-button').click(function(){
             $('#autopopup-option').css('display','none');
+            if ($('#checkbox').is(':checked')) localStorage.setItem('sliek-newsletter-dismissed', '1');
         })
 
     });
 
     $('.mfp-iframe').magnificPopup({
-        type: 'image',
-        gallery: {
-            enabled: true
-        }
+        type: 'iframe'
     });
         // magnificPopup
         $('.popup-img').magnificPopup({
@@ -705,7 +705,7 @@
 
     //Loader
 
-    jQuery(window).load(function () {
+    jQuery(window).on('load', function () {
         $(".loader").fadeOut(2100);
     });
 
@@ -713,3 +713,15 @@
     new WOW().init();
 
 })(jQuery);
+
+// Central Khmer store content and shared layout.
+(function () {
+    var config = document.createElement('script');
+    config.src = 'assets/js/store-config.js';
+    config.onload = function () {
+        var storefront = document.createElement('script');
+        storefront.src = 'assets/js/moly-khmer.js';
+        document.body.appendChild(storefront);
+    };
+    document.body.appendChild(config);
+}());
