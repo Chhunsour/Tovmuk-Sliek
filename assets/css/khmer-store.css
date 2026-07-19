@@ -21,6 +21,10 @@ textarea {
     font-family: "Kantumruy Pro", sans-serif !important;
 }
 
+body *:not(.fa):not(.fas):not(.far):not(.fal):not(.fab) {
+    font-family: "Kantumruy Pro", sans-serif !important;
+}
+
 body {
     max-width: 100%;
     overflow-x: clip;
@@ -509,6 +513,21 @@ button[type="submit"] { border-radius: 2px !important; }
     line-height: 1.55 !important;
     letter-spacing: -.025em;
     text-wrap: balance;
+}
+.man-collection-area .kh-collection-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #efc9b8;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+.man-collection-area .collection-area a strong {
+    display: block;
+    color: #fff;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: inherit;
 }
 .man-collection-area .collection-area a::after {
     content: "មើលបណ្តុំ  →";

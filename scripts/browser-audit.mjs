@@ -123,6 +123,10 @@ try {
             footer: !!document.querySelector('.kh-site-footer'),
             config: !!window.MOLY_STORE,
             font: getComputedStyle(document.body).fontFamily,
+            foreignTextFonts: [...document.querySelectorAll('body *:not(.fa):not(.fas):not(.far):not(.fal):not(.fab)')].filter(el => {
+              const hasOwnText = [...el.childNodes].some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+              return hasOwnText && el.getClientRects().length && !getComputedStyle(el).fontFamily.includes('Kantumruy Pro');
+            }).slice(0, 8).map(el => ({ tag: el.tagName, class: el.className, font: getComputedStyle(el).fontFamily })),
             stickyHeader: getComputedStyle(document.querySelector('.kh-site-header')).position === 'sticky',
             squareProducts: [...document.querySelectorAll('.product-wrapper:not(.d-flex) .product-img > img')].every(img => Math.abs(img.getBoundingClientRect().width - img.getBoundingClientRect().height) < 2),
             loaderHidden: !loader || getComputedStyle(loader).display === 'none',
@@ -146,7 +150,7 @@ try {
       const state = result.result.value;
       if (!state) throw new Error(result.exceptionDetails?.exception?.description || `Audit evaluation failed for ${page}`);
       if (process.env.AUDIT_TEXT && viewport.name === "desktop" && state.latin.length) latinByPage.push(`${page}: ${state.latin.join(" | ")}`);
-      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || !state.popupRemoved || state.productImageGaps.length || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
+      if (state.lang !== "km" || !state.header || !state.footer || !state.config || !state.font.includes("Kantumruy Pro") || state.foreignTextFonts.length || !state.stickyHeader || !state.squareProducts || !state.loaderHidden || !state.popupRemoved || state.productImageGaps.length || state.overflow > 3 || state.broken.length || !state.mobileMenu || !state.searchOpen) {
         failures.push(`${viewport.name}/${page}: ${JSON.stringify(state)}`);
       }
       if (errors.length) failures.push(`${viewport.name}/${page}: ${errors.join(" | ")}`);

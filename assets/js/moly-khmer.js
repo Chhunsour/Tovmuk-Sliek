@@ -560,7 +560,7 @@
             promo.style.backgroundPosition = "center";
         });
         document.querySelectorAll(".man-collection-area .collection-area a").forEach(function (link) {
-            link.textContent = "បណ្តុំសម្រាកលម្ហែ បញ្ចុះតម្លៃដល់ ៣០%";
+            link.innerHTML = '<span class="kh-collection-eyebrow">បណ្តុំពិសេស · បញ្ចុះតម្លៃ ៣០%</span><strong>ស្ទីលស្រាល សម្រាប់រាល់ថ្ងៃ</strong>';
             link.href = "shop-grid-page.html";
         });
         document.querySelectorAll('[style*="team-bg"]').forEach(function (promo) {
