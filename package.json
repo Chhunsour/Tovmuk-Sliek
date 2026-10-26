@@ -2,6 +2,7 @@
   "name": "sliek-khmer-fashion-store",
   "version": "1.0.0",
   "private": true,
+  "author": "Seng Chhunsour <https://github.com/Chhunsour>",
   "description": "Khmer fashion storefront adapted from the Moly HTML template",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
